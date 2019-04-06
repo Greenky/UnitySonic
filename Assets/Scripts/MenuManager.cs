@@ -34,6 +34,13 @@ public class MenuManager : MonoBehaviour
 
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (SceneManager.GetActiveScene().name == "DataSelect")
+                SceneManager.LoadScene("TitleScreen");
+            else
+                Application.Quit();
+        }
         if (SceneManager.GetActiveScene().name == "TitleScreen" && Input.GetButtonDown("Submit"))
         {
             SceneManager.LoadScene("DataSelect");

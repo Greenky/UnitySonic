@@ -61,11 +61,9 @@
     <Compile Include="Assets\Scripts\RampBoost.cs" />
     <Compile Include="Assets\Scripts\RingScript.cs" />
     <Compile Include="Assets\Scripts\Sonic.cs" />
+    <Compile Include="Assets\Scripts\SpikeController.cs" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>/Volumes/Storage/goinfre/vmazurok/UNITY/d04/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Analytics.Android.Editor">
-      <HintPath>/Volumes/Storage/goinfre/vmazurok/UNITY/d04/Library/ScriptAssemblies/Unity.Analytics.Android.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.PackageManagerUI.Editor">
       <HintPath>/Volumes/Storage/goinfre/vmazurok/UNITY/d04/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
@@ -75,6 +73,9 @@
     </Reference>
     <Reference Include="Unity.TextMeshPro">
       <HintPath>/Volumes/Storage/goinfre/vmazurok/UNITY/d04/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Analytics.DataPrivacy">
+      <HintPath>/Volumes/Storage/goinfre/vmazurok/UNITY/d04/Library/ScriptAssemblies/Unity.Analytics.DataPrivacy.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
@@ -275,19 +276,13 @@
       <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/UnitySpatialTracking/RuntimeEditor/UnityEngine.SpatialTracking.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.Editor">
-      <HintPath>/Volumes/Storage/goinfre/vmazurok/UNITY/d04/Library/PackageCache/com.unity.analytics@3.0.9/Unity.Analytics.Editor.dll</HintPath>
+      <HintPath>/Volumes/Storage/goinfre/vmazurok/UNITY/d04/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.StandardEvents">
-      <HintPath>/Volumes/Storage/goinfre/vmazurok/UNITY/d04/Library/PackageCache/com.unity.analytics@3.0.9/Unity.Analytics.StandardEvents.dll</HintPath>
+      <HintPath>/Volumes/Storage/goinfre/vmazurok/UNITY/d04/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.StandardEvents.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.Tracker">
-      <HintPath>/Volumes/Storage/goinfre/vmazurok/UNITY/d04/Library/PackageCache/com.unity.analytics@3.0.9/Unity.Analytics.Tracker.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Analytics">
-      <HintPath>/Volumes/Storage/goinfre/vmazurok/UNITY/d04/Library/PackageCache/com.unity.analytics@3.0.9/Android/Unity.Analytics.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.Purchasing">
-      <HintPath>/Volumes/Storage/goinfre/vmazurok/UNITY/d04/Library/PackageCache/com.unity.purchasing@2.0.1/UnityEngine.Purchasing.dll</HintPath>
+      <HintPath>/Volumes/Storage/goinfre/vmazurok/UNITY/d04/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.Tracker.dll</HintPath>
     </Reference>
     <Reference Include="netstandard">
       <HintPath>/Applications/Unity/Unity.app/Contents/NetStandard/ref/2.0.0/netstandard.dll</HintPath>

@@ -228,59 +228,51 @@ public class Sonic : MonoBehaviour
 		aDestroy.Play ();
 	}
 
-	public void getHit() {
-		rbody.AddForce(new Vector2(0, 12), ForceMode2D.Impulse);
-		// ▌─────────────────────────▐█─────▐
-		// ▌────▄──────────────────▄█▓█▌────▐
-		// ▌───▐██▄───────────────▄▓░░▓▓────▐
-		// ▌───▐█░██▓────────────▓▓░░░▓▌────▐
-		// ▌───▐█▌░▓██──────────█▓░░░░▓─────▐
-		// ▌────▓█▌░░▓█▄███████▄███▓░▓█─────▐
-		// ▌────▓██▌░▓██░░░░░░░░░░▓█░▓▌─────▐
-		// ▌─────▓█████░░░░░░░░░░░░▓██──────▐
-		// ▌─────▓██▓░░░░░░░░░░░░░░░▓█──────▐
-		// ▌─────▐█▓░░░░░░█▓░░▓█░░░░▓█▌─────▐
-		// ▌─────▓█▌░▓█▓▓██▓░█▓▓▓▓▓░▓█▌─────▐
-		// ▌─────▓▓░▓██████▓░▓███▓▓▌░█▓─────▐
-		// ▌────▐▓▓░█▄▐▓▌█▓░░▓█▐▓▌▄▓░██─────▐
-		// ▌────▓█▓░▓█▄▄▄█▓░░▓█▄▄▄█▓░██▌────▐
-		// ▌────▓█▌░▓█████▓░░░▓███▓▀░▓█▓────▐
-		// ▌───▐▓█░░░▀▓██▀░░░░░─▀▓▀░░▓█▓────▐
-		// ▌───▓██░░░░░░░░▀▄▄▄▄▀░░░░░░▓▓────▐
-		// ▌───▓█▌░░░░░░░░░░▐▌░░░░░░░░▓▓▌───▐
-		// ▌───▓█░░░░░░░░░▄▀▀▀▀▄░░░░░░░█▓───▐
-		// ▌──▐█▌░░░░░░░░▀░░░░░░▀░░░░░░█▓▌──▐
-		// ▌──▓█░░░░░░░░░░░░░░░░░░░░░░░██▓──▐
-		// ▌──▓█░░░░░░░░░░░░░░░░░░░░░░░▓█▓──▐
-		// ▌──██░░░░░░░░░░░░░░░░░░░░░░░░█▓──▐
-		// ▌──█▌░░░░░░░░░░░░░░░░░░░░░░░░▐▓▌─▐
-		// ▌─▐▓░░░░░░░░░░░░░░░░░░░░░░░░░░█▓─▐
-		// ▌─█▓░░░░░░░░░░░░░░░░░░░░░░░░░░▓▓─▐
-		// ▌─█▓░░░░░░░░░░░░░░░░░░░░░░░░░░▓▓▌▐
-		// ▌▐█▓░░░░░░░░░░░░░░░░░░░░░░░░░░░██▐
-		// ▌█▓▌░░░░░░░░░░░░░░░░░░░░░░░░░░░▓█▐
-		// ██████████████████████████████████
-		// █░▀░░░░▀█▀░░░░░░▀█░░░░░░▀█▀░░░░░▀█
-		// █░░▐█▌░░█░░░██░░░█░░██░░░█░░░██░░█
-		// █░░▐█▌░░█░░░██░░░█░░██░░░█░░░██░░█
-		// █░░▐█▌░░█░░░██░░░█░░░░░░▄█░░▄▄▄▄▄█
-		// █░░▐█▌░░█░░░██░░░█░░░░████░░░░░░░█
-		// █░░░█░░░█▄░░░░░░▄█░░░░████▄░░░░░▄█
-		// ██████████████████████████████████
+	public void getHit(Vector2 where) {
+		if (isInvincible == false)
+		{
+			if (GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>().ringNumber != 0)
+			{
+				rbody.velocity = Vector2.zero;
+				isHit = true;
+				animator.SetBool("getHit", true);
+				rbody.AddForce(where * -10, ForceMode2D.Impulse);
+				Invoke("stopHit", 2);
+				aSpike.Play();
+				aLoseRings.Play();
+				GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>().LoseRings(where);
+				StartCoroutine(makeInvincible());
+			}
+			else
+				dead();
+		}
+	}
 
+	private IEnumerator makeInvincible()
+	{
+		isInvincible = true;
+		for (int i = 0; i < 20; i++)
+		{
+			GetComponent<SpriteRenderer>().enabled = !GetComponent<SpriteRenderer>().enabled;
+			yield return new WaitForSeconds(0.25f);
+		}
+		isInvincible = false;
+		
 	}
 
 	void stopHit() {
+		animator.SetBool("getHit", false);
 		isHit = false;
 	}
 
-	void dead(){
+	public void dead(){
 		aDeath.Play ();
 		animator.SetBool("dead", true);
 		isDead = true;
 		rbody.AddForce (new Vector2(0, 15), ForceMode2D.Impulse);
 		GetComponent<CircleCollider2D>().enabled = false;
 		Camera.main.transform.parent = null;
+		PlayerPrefs.SetInt("Death", PlayerPrefs.GetInt("Death") + 1);
 		Invoke("newLife", 2);
 	}
 

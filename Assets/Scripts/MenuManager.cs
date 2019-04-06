@@ -25,9 +25,9 @@ public class MenuManager : MonoBehaviour
             if (_death)
                 _death.text = PlayerPrefs.GetInt("Death").ToString();
             int levels = PlayerPrefs.GetInt("OpenLevels");
-            for (int i = 1; i < levels; i++)
+            for (int i = 0; i < levels; i++)
             {
-                _levels[i].interactable = true;
+                _levels[i + 1].interactable = true;
             }
         }
     }
